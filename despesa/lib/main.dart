@@ -24,6 +24,10 @@ class DespesasApp extends StatelessWidget {
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
+              button: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
         appBarTheme: AppBarTheme(
           textTheme: ThemeData.light().textTheme.copyWith(
@@ -75,6 +79,9 @@ class _HomePageState extends State<HomePage> {
   _removeTransaction(String id) {
     setState(() {
       _transactions.removeWhere((tr) => tr.id == id);
+     /*  _transactions.removeWhere((tr) {
+        return tr.id == id;
+      }); */
     });
   }
 

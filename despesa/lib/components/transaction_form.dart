@@ -31,6 +31,7 @@ class _TransactionFormState extends State<TransactionForm> {
   }
 
   _showDatePicker() {
+    //finção do flutter
     showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -83,6 +84,7 @@ class _TransactionFormState extends State<TransactionForm> {
                     child: Text(
                       'Selecionar data',
                       style: TextStyle(
+                        color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -97,9 +99,8 @@ class _TransactionFormState extends State<TransactionForm> {
                 ElevatedButton(
                   child: Text('Nova Transação'),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.amber,
-                    onPrimary: Colors.white,
-                    shadowColor: Colors.red,
+                    primary: Theme.of(context).primaryColor,
+                    onPrimary: Colors.white, 
                   ),
                   onPressed: _submitForm,
                 ),

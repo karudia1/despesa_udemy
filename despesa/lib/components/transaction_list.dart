@@ -64,7 +64,7 @@ class TransactionList extends StatelessWidget {
                     trailing: IconButton(
                       icon: Icon(Icons.delete),
                       color: Theme.of(context).errorColor,
-                      onPressed: () => onRemove(tr.id),
+                      onPressed: () => onRemove(tr.id), //precisa de parametro
                     ),
                   ),
                 );
