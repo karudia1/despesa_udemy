@@ -57,21 +57,24 @@ class Chart extends StatelessWidget {
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: groupedTransactions.map((tr) {
-          //representa as barrinhas do chart
-          return Flexible(
-            fit: FlexFit.tight,
-            child: ChartBar(
-              label: tr['day'] as String,
-              value: tr['value'] as double,
-              percentage: _weekTotalValue == 0
-                  ? 0
-                  : (tr['value'] as double) / _weekTotalValue,
-            ),
-          );
-        }).toList(),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupedTransactions.map((tr) {
+            //representa as barrinhas do chart
+            return Flexible(
+              fit: FlexFit.tight,
+              child: ChartBar(
+                label: tr['day'] as String,
+                value: tr['value'] as double,
+                percentage: _weekTotalValue == 0
+                    ? 0
+                    : (tr['value'] as double) / _weekTotalValue,
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
