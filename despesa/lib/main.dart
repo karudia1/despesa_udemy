@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, prefer_const_constructors, sized_box_for_whitespace, use_key_in_widget_constructors, avoid_unnecessary_containers, deprecated_member_use, unused_element
+// ignore_for_file: avoid_print, prefer_const_constructors, sized_box_for_whitespace, use_key_in_widget_constructors, avoid_unnecessary_containers, deprecated_member_use, unused_element, use_function_type_syntax_for_parameters, non_constant_identifier_names
 import 'dart:math';
 import 'dart:io';
 import 'package:despesa/components/chart.dart';
