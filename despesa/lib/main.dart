@@ -181,7 +181,7 @@ class _HomePage extends State<HomePage> with WidgetsBindingObserver {
       ),
     );
 
-    /*   if (Platform.isIOS) {
+   /* if (Platform.isIOS) {
       return CupertinoPageScaffold(
             navigationBar: appBar,
             child: bodyPage,
