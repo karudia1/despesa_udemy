@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_print, prefer_const_constructors_in_immutables, sized_box_for_whitespace
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_print, prefer_const_constructors_in_immutables, sized_box_for_whitespace, unused_import
 
 import 'package:despesa/components/adaptative_button.dart';
 import 'package:despesa/components/adaptative_date_picker.dart';
@@ -13,13 +13,38 @@ class TransactionForm extends StatefulWidget {
   TransactionForm(this.onSubmit);
 
   @override
-  _TransactionFormState createState() => _TransactionFormState();
+  _TransactionFormState createState() {
+    return _TransactionFormState();
+  }
+  // _TransactionFormState createState() => _TransactionFormState();
 }
 
 class _TransactionFormState extends State<TransactionForm> {
   final titleController = TextEditingController();
   final valueController = TextEditingController();
   DateTime _selectedDate = DateTime.now();
+
+  _TransactionFormState() {
+    print('Constructor _TransactionFormState');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    print('initState() _TransactionFormState');
+  }
+
+  @override
+  void didUpdateWidget(TransactionForm oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print('didUpdateWidget() _TransactionFormState');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print('dispose() _TransactionFormState');
+  }
 
   _submitForm() {
     final title = titleController.text;
@@ -56,11 +81,11 @@ class _TransactionFormState extends State<TransactionForm> {
       child: Card(
         elevation: 5,
         child: Padding(
-          padding: const EdgeInsets.only(
+          padding: EdgeInsets.only(
             top: 10,
             right: 10,
             left: 10,
-            bottom: 10, // + MediaQuery.of(context).viewInsets.bottom,
+            bottom: 10 + MediaQuery.of(context).viewInsets.bottom, // + MediaQuery.of(context).viewInsets.bottom,
           ),
           child: Column(
             children: <Widget>[

@@ -48,7 +48,7 @@ class AdaptativeDatePicker extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: Text(
+                  child: Text( 
                     'Data Selecionada: ${DateFormat('dd/MM/y').format(selectedDate)}',
                   ),
                 ),

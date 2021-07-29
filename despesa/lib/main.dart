@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, prefer_const_constructors, sized_box_for_whitespace, use_key_in_widget_constructors, avoid_unnecessary_containers, deprecated_member_use, unused_element, use_function_type_syntax_for_parameters, non_constant_identifier_names
+// ignore_for_file: avoid_print, prefer_const_constructors, sized_box_for_whitespace, use_key_in_widget_constructors, avoid_unnecessary_containers, deprecated_member_use, unused_element, use_function_type_syntax_for_parameters, non_constant_identifier_names, override_on_non_overriding_member
 import 'dart:math';
 import 'dart:io';
 import 'package:despesa/components/chart.dart';
@@ -49,9 +49,26 @@ class HomePage extends StatefulWidget {
   _HomePage createState() => _HomePage();
 }
 
-class _HomePage extends State<HomePage> {
+class _HomePage extends State<HomePage> with WidgetsBindingObserver {
   final List<Transaction> _transactions = [];
   bool _showChart = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance!.removeObserver(this);
+  }
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
