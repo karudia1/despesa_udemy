@@ -108,12 +108,21 @@ class _HomePageState extends State<HomePage> {
     final appBar = AppBar(
       title: Text(
         'Despesas Pessoais',
-        style: TextStyle(
+        /*  style: TextStyle(
           //Mexe na responsividade da fonte
           fontSize: 20 * _mediaQuery.textScaleFactor,
-        ),
+        ), */
       ),
       actions: <Widget>[
+        if (isLandscape)
+          IconButton(
+            icon: Icon(showChart ? Icons.list : Icons.show_chart),
+            onPressed: () {
+              setState(() {
+                showChart = !showChart;
+              });
+            },
+          ),
         IconButton(
           icon: Icon(Icons.add),
           onPressed: () => _openTransactionFormModal(context),
@@ -127,7 +136,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            if (isLandscape)
+           /*  if (isLandscape)
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -141,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
                 ],
-              ),
+              ), */
             if (showChart || !isLandscape)
               Container(
                 height: _mediaQuery.size.height * (isLandscape ? 0.7 : 0.3),
