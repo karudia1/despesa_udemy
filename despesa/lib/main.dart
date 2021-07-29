@@ -50,6 +50,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   //Shift + alt + A
+  bool showChart = false;
   final List<Transaction> _transactions = [];
 
   List<Transaction> get _recentTransactions {
@@ -79,7 +80,7 @@ class _HomePageState extends State<HomePage> {
   _removeTransaction(String id) {
     setState(() {
       _transactions.removeWhere((tr) => tr.id == id);
-     /*  _transactions.removeWhere((tr) {
+      /*  _transactions.removeWhere((tr) {
         return tr.id == id;
       }); */
     });
@@ -96,22 +97,61 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Despesas Pessoais'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () => _openTransactionFormModal(context),
-          ),
-        ],
+    //Seta a orientação da aplicação
+    /*  SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp;
+    ]); */
+    final _mediaQuery = MediaQuery.of(context);
+    bool isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
+    final appBar = AppBar(
+      title: Text(
+        'Despesas Pessoais',
+        style: TextStyle(
+          //Mexe na responsividade da fonte
+          fontSize: 20 * _mediaQuery.textScaleFactor,
+        ),
       ),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () => _openTransactionFormModal(context),
+        ),
+      ],
+    );
+
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Chart(_recentTransactions),
-            TransactionList(_transactions, _removeTransaction),
+            if (isLandscape)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Exibir gráfico'),
+                  Switch(
+                    value: showChart,
+                    onChanged: (value) {
+                      setState(() {
+                        showChart = value;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            if (showChart || !isLandscape)
+              Container(
+                height: _mediaQuery.size.height * (isLandscape ? 0.7 : 0.3),
+                child: Chart(_recentTransactions),
+              ),
+            if (!showChart || !isLandscape)
+              Container(
+                height: _mediaQuery.size.height * 0.70,
+                child: TransactionList(_transactions, _removeTransaction),
+              ),
           ],
         ),
       ),
