@@ -10,10 +10,14 @@ import 'package:intl/intl.dart';
 class TransactionForm extends StatefulWidget {
   final void Function(String, double, DateTime) onSubmit;
 
-  TransactionForm(this.onSubmit);
+  TransactionForm(this.onSubmit) {
+    print('Constructor TransactionForm');
+  }
 
-  @override
+  @override 
+  // ignore: no_logic_in_create_state
   _TransactionFormState createState() {
+    print('createState TransactionForm');
     return _TransactionFormState();
   }
   // _TransactionFormState createState() => _TransactionFormState();
@@ -24,6 +28,23 @@ class _TransactionFormState extends State<TransactionForm> {
   final valueController = TextEditingController();
   DateTime _selectedDate = DateTime.now();
 
+  @override
+  void initState() {
+    super.initState();
+    print('initState() _TransactionFormState');
+  }
+
+  @override
+  void didUpdateWidget(TransactionForm oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print('didUpdateWidget() _TransactionFormState');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print('dispose() _TransactionFormState');
+  }
 /*   _TransactionFormState() {
     print('Constructor _TransactionFormState');
   } */
@@ -77,6 +98,7 @@ class _TransactionFormState extends State<TransactionForm> {
 
   @override
   Widget build(BuildContext context) {
+     print('build() TransactionForm');
     final _mediaQuery = MediaQuery.of(context);
 
     return SingleChildScrollView(
