@@ -31,7 +31,7 @@ class AdaptativeButton extends StatelessWidget {
               primary: Theme.of(context).primaryColor,
               onPrimary: Colors.white,
             ),
-            onPressed: () => onPressed,
+            onPressed: onPressed(),
           );
   }
 }

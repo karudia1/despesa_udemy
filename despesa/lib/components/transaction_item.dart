@@ -11,7 +11,7 @@ class TransactionItem extends StatefulWidget {
   final void Function(String) onRemove;
 
   const TransactionItem({
-    required Key key,
+    Key? key,
     required this.tr,
     required this.onRemove,
   }) : super(key: key);
