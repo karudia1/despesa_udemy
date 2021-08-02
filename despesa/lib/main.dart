@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
     ]); */
     final _mediaQuery = MediaQuery.of(context);
     bool isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+        _mediaQuery.orientation == Orientation.landscape;
 
     final appBar = AppBar(
       title: Text(
@@ -158,7 +158,7 @@ class _HomePageState extends State<HomePage> {
               ),
             if (!showChart || !isLandscape)
               Container(
-                height: _mediaQuery.size.height * 0.70,
+                height: _mediaQuery.size.height  * (isLandscape ? 1 : 0.7),
                 child: TransactionList(_transactions, _removeTransaction),
               ),
           ],
